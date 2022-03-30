@@ -17,4 +17,4 @@ insert into aaa values ('김말숙',35,'f','2020-01-05');
 
 select * from aaa;
 
--- 깃 실험
+-- 깃 실험 2
