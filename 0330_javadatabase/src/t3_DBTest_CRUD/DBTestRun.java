@@ -9,7 +9,7 @@ public class DBTestRun {
 		DBTest dbTest = new DBTest();
 		
 		// 메뉴 작업
-		int sel = 6;
+		int sel = 6, res, no;
 		String name = "";
 		while(true) {
 			System.out.println("____ 작업선택 ____");
@@ -17,17 +17,20 @@ public class DBTestRun {
 			sel = sc.nextInt();
 			if(sel < 1 || sel > 5) break;
 			
+			int age;
+			String gender, joinday;
+			
 			switch (sel) {
 				case 1: 
 					// 입력처리
 					System.out.print("성명을 입력하세요. : ");
 					name = sc.next();
 					System.out.print("나이을 입력하세요. : ");
-					int age = sc.nextInt();
+					age = sc.nextInt();
 					System.out.print("성별을 입력하세요.(1:남자, 2:여자) : ");
-					String gender = sc.next();
+					gender = sc.next();
 					System.out.print("가입일자를 입력하세요.(yyyy-mm-dd) : ");
-					String joinday = sc.next();
+					joinday = sc.next();
 					if(gender.equals("1")) gender = "m";
 					else gender = "f";
 					dbTest.input(name, age, gender, joinday);
@@ -40,7 +43,7 @@ public class DBTestRun {
 					while(true) {
 						System.out.print("검색할 성명을 입력하세요. : ");
 						name = sc.next();
-						dbTest.searchTest(name);
+						dbTest.searchTest(name, "s");
 						System.out.print("계속 하시겠습니까?(Y/N) : ");
 						String ans = sc.next();
 						if(!ans.toUpperCase().equals("Y")) break;
@@ -54,10 +57,41 @@ public class DBTestRun {
 				
 				case 4: 
 					// 수정처리
+					System.out.print("수정할 성명을 입력하세요. : ");
+					name = sc.next();
+					res = dbTest.searchTest(name, "u");
+					if(res == 1) {	// 찾는 자료가 있으므로 수정처리
+						while(true) {
+							System.out.println("수정 할 항목을 선택하세요.");
+							System.out.print("1.나이 2.성별 3.가입일 : ");
+							no = sc.nextInt();
+							if(no == 1) {
+								System.out.print("나이 : ");
+								age = sc.nextInt();
+								dbTest.update(no, age, name);
+							} else if(no == 2) {
+								System.out.print("성별(남자:1, 여자:2) : ");
+								gender = sc.next();
+								dbTest.update(no, gender, name);
+							} else if(no == 3) {
+								System.out.print("가입일(yyyy-mm-dd) : ");
+								joinday = sc.next();
+								dbTest.update(no, joinday, name);
+							} else {
+								break;
+							}							
+						}
+					}
 					break;
 				
 				case 5: 
 					// 삭제처리
+					System.out.print("삭제할 성명을 입력하세요. : ");
+					name = sc.next();
+					res = dbTest.searchTest(name, "d");
+					if(res == 1) {	// 찾는 자료가 있으므로 수정처리
+						dbTest.delete(name);
+					}
 					break;
 				
 				default:
