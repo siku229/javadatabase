@@ -12,7 +12,7 @@ public class DBTestDAO {
 	Statement stmt = null;
 	ResultSet rs = null;
 	String sql = "";
-	DBTestVO vo;
+	DBTestVO vo; //fasd
 	
 	// 처음 DAO 생성시에 Database 연결
 	public DBTestDAO() {
