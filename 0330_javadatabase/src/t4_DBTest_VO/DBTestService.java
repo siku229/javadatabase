@@ -9,7 +9,7 @@ public class DBTestService {
 	DBTestVO vo = new DBTestVO();
 	String name;
 	
-	// 자료 등록//dsa dasdasd
+	// 자료 등록//dsa dasdasdaaa
 	public void input() {
 		System.out.println("성명 : ");
 		vo.setName(sc.next());
